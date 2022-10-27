@@ -1,47 +1,22 @@
-import headerLogo from '../src/images/Header-logo.svg';
-import cross from '../src/images/cross.svg';
-import like from '../src/images/like.svg';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import cross from '../images/cross.svg';
+/*import like from '../src/images/like.svg';
 import likeActive from '../src/images/like-active.svg';
-import pen from '../src/images/pen.svg';
-import plus from '../src/images/plus.svg';
-import trash from '../src/images/trash.png';
-import profileAvatar from '../src/images/Profile-avatar.jpg';
+
+
+import trash from '../src/images/trash.png';*/
 
 function App() {
   return (
     <div className="page" >
       
-      <header className="header">
-        <img src={headerLogo} className="header__logo" alt="Логотип" />
-      </header>
+      <Header />
       
-      <main className="content">
-        <section className="profile">
-          <button className="profile__avatar-edit">
-            <img className="profile__avatar" src={profileAvatar} alt="" /> 
-          </button>
-          <div className="profile__info">
-            <div className="profile__info-conteiner">
-              <h1 className="profile__name">Жак-Ив Кусто</h1>
-              <button className="profile__edit-button" type="button">
-                <img className="profile__edit-button-pen" src={pen} alt="" />
-              </button>
-            </div>  
-            <p className="profile__activity">Исследователь океана</p>
-          </div>
-          <button className="profile__add-button" type="button">
-            <img className="profile__add-button-plus" src={plus} alt="" />
-          </button>
-        </section>
-
-        <section className="elements">
-          
-        </section>
-      </main>
+      <Main />
       
-      <footer className="footer">
-        <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
+      <Footer />
 
       <div className="popup popup_type_edit-profile"> 
         <div className="popup__conteiner">
