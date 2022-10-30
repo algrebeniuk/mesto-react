@@ -1,36 +1,42 @@
 import profileAvatar from '../images/Profile-avatar.jpg';
 import pen from '../images/pen.svg';
 import plus from '../images/plus.svg';
+import React from 'react';
+import api from '../utils/Api';
 
-function Main() {
+function Main(props) {
+
+    const[userName, setUserName] = React.useState();
+    const[userDescription, setUserDescription] = React.useState();
+    const[userAvatar, setUserAvatar] = React.useState();
+
+    React.useEffect(() =>{
+        api.getUserInfo()
+          .then((data) => {
+            setUserName(data.name);
+            setUserDescription(data.about);
+            setUserAvatar(data.avatar);
+          })
+          .catch((err) => console.log(err))
+    }, [])
+    
     return(
        <main className="content">
         <section className="profile">
-          <button className="profile__avatar-edit" onClick={
-            function handleEditAvatarClick() {
-                document.querySelector('.popup_type_edit-avatar').classList.add('popup_opened');
-            }
-          }>
-            <img className="profile__avatar" src={profileAvatar} alt="" /> 
-          </button>
+          <div className="profile__avatar">
+            <button className="profile__avatar-edit" onClick={props.onEditAvatar}></button>
+            <img className="profile__avatar-img" src={userAvatar}    alt="" /> 
+          </div>
           <div className="profile__info">
             <div className="profile__info-conteiner">
-              <h1 className="profile__name">Жак-Ив Кусто</h1>
-              <button className="profile__edit-button" type="button" onClick={
-                function handleEditProfileClick() {
-                    document.querySelector('.popup_type_edit-profile').classList.add('popup_opened');
-                }
-              }>
+              <h1 className="profile__name">{userName}</h1>
+              <button className="profile__edit-button" type="button" onClick={props.onEditProfile}>
                 <img className="profile__edit-button-pen" src={pen} alt="" />
               </button>
             </div>  
-            <p className="profile__activity">Исследователь океана</p>
+            <p className="profile__activity">{userDescription}</p>
           </div>
-          <button className="profile__add-button" type="button" onClick={
-            function handleAddPlaceClick() {
-                document.querySelector('.popup_type_add-card').classList.add('popup_opened');
-            }
-          }>
+          <button className="profile__add-button" type="button" onClick={props.onAddPlace}>
             <img className="profile__add-button-plus" src={plus} alt="" />
           </button>
         </section>
