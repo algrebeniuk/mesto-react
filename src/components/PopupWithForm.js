@@ -1,17 +1,17 @@
 
 import cross from '../images/cross.svg';
 
-function PopupWithForm(props) {
+function PopupWithForm({name, isOpen, onClose, title, children, buttonText}) {
     return(
-      <div className={`popup popup_type_${props.name}`+ (props.isOpen && " popup_opened")}> 
+      <div className={`popup popup_type_${name}`+ (isOpen && " popup_opened")}> 
         <div className="popup__conteiner">
-          <button className="popup__close" type="button" onClick={props.onClose}>
+          <button className="popup__close" type="button" onClick={onClose}>
             <img className="popup__close-cross" src={cross} alt="" />
           </button>
-          <form className="form" name="{props.name}" noValidate>
-            <h2 className="form__title">{props.title}</h2>
-            {props.children}
-            <button className="form__save" type="submit">Сохранить</button>
+          <form className="form" name="{name}" noValidate>
+            <h2 className="form__title">{title}</h2>
+            {children}
+            <button className="form__save" type="submit">{buttonText}</button>
           </form>
         </div>
       </div>
