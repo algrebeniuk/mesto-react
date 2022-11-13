@@ -85,6 +85,14 @@ class Api {
         });
         return this._serverСorrectness(res);
     }
+
+    async changeLikeCardStatus(cardId, isLiked) {
+        const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: isLiked ? 'DELETE' : 'PUT',
+            headers: this._headers
+        });
+        return this._serverСorrectness(res);
+    }
 }
 
 const api = new Api({
