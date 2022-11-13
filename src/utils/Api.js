@@ -45,7 +45,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
-                link: data.link
+                link: data.link 
             })
         });
         return this._serverСorrectness(res);
